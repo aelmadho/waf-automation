@@ -52,15 +52,15 @@ resource "aws_api_gateway_integration_response" "ApiGatewayBadBotIntegrationResp
 }
 
 resource "aws_api_gateway_deployment" "ApiGatewayBadBotDeployment" {
-    depends_on = ["aws_api_gateway_method.ApiGatewayBadBotMethod"]
+    depends_on = ["aws_api_gateway_method.ApiGatewayBadBotMethod", "aws_api_gateway_method_response.200"]
     rest_api_id = "${aws_api_gateway_rest_api.ApiGatewayBadBot.id}"
     stage_name = "CFDeploymentStage" 
     description = "CloudFormation Deployment Stage"
 }
 
 resource "aws_api_gateway_deployment" "ApiGatewayBadBotStage" {
-    depends_on = ["aws_api_gateway_method.ApiGatewayBadBotMethod"]
-    #depends_on = ["aws_api_gateway_deployment.ApiGatewayBadBotDeployment"]
+    #depends_on = ["aws_api_gateway_method.ApiGatewayBadBotMethod"]
+    depends_on = ["aws_api_gateway_deployment.ApiGatewayBadBotDeployment"]
     rest_api_id = "${aws_api_gateway_rest_api.ApiGatewayBadBot.id}"
     stage_name = "ProdStage" 
     description = "Production Stage"

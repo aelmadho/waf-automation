@@ -20,12 +20,12 @@
 ###########################
 variable "customer" {
     description = "[REQUIRED] Customer/Project Name (max 15 characters):"
-    default     = "jonathancandid"
+    default     = "ecp"
 }
 
 variable "CloudFrontAccessLogBucket" {
     description = "[REQUIRED] CDN S3 Logs Bucket:"
-    default     = "jonathan-logging-candid"
+    default     = "aelmadho-waf-bucket"
 }
 ###############################################################################
 

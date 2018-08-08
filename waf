@@ -32,7 +32,7 @@ if [ $# -ne 3 ]; then
     exit
 fi
 
-cp -f .template.main.tf main.tf
+#cp -f .template.main.tf main.tf
 
 PROJECT=""
 S3=""
@@ -52,8 +52,8 @@ else
     S3=$2;
 fi
 
-sed -i -e "s/cerboXYZcerbo/$PROJECT/" main.tf
-sed -i -e "s/cerboZYXcerbo/$S3/" main.tf
+#sed -i -e "s/cerboXYZcerbo/$PROJECT/" main.tf
+#sed -i -e "s/cerboZYXcerbo/$S3/" main.tf
 
 # NOTE: "-parallelism=1" is needed until Terraform fixes a nasty bug
 # https://github.com/hashicorp/terraform/issues/10335
@@ -64,13 +64,13 @@ sed -i -e "s/cerboZYXcerbo/$S3/" main.tf
 
 if [ $3 == "create" ]; then
     mkdir -p env/$PROJECT
-    terraform apply -parallelism=1 -state=env/$PROJECT/terraform.tfstate
+    terraform apply -parallelism=1 -state=env/$PROJECT/terraform.tfstate -no-color
 elif [ $3 == "delete" ]; then
     echo "##############################"
     echo "# WARNING! WARNING! WARNING! #"
     echo "##############################"
     echo
-    terraform destroy -parallelism=1 -state=env/$PROJECT/terraform.tfstate
+    terraform destroy -parallelism=1 -state=env/$PROJECT/terraform.tfstate -no-color
 else
     echo "Invalid Command: $3"
     echo

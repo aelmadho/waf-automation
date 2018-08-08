@@ -20,7 +20,8 @@
 ###########################
 provider "aws" {
     # *** Change ONLY THIS LINE: ***
-    shared_credentials_file  = "/Users/jonathanglass/.aws/credentials"
+    shared_credentials_file  = "~/.aws/credentials"
     region = "${var.aws_region}"
+    profile = "isengard2"
 }
 ###############################################################################
